@@ -21,7 +21,7 @@ public class Official implements Serializable {
     private String officialYouTube;
     private String officialFB;
     private String officialTwitter;
-    private String officialGPlus;
+    private String officialGooglePlus;
 
     public Official() {
     }
@@ -114,11 +114,11 @@ public class Official implements Serializable {
         this.officialTwitter = officialTwitter;
     }
 
-    public String getOfficialGPlus() {
-        return officialGPlus;
+    public String getOfficialGooglePlus() {
+        return officialGooglePlus;
     }
 
-    public void setOfficialGPlus(String officialGPlus) {
-        this.officialGPlus = officialGPlus;
+    public void setOfficialGooglePlus(String officialGooglePlus) {
+        this.officialGooglePlus = officialGooglePlus;
     }
 }
