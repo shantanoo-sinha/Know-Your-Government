@@ -8,8 +8,25 @@
     <string name="copyright">\u00a9  2020, Shantanoo Sinha</string>
     <string name="google_civic_information_api">Google Civic Information API</string>
     <string name="no_network_connection_title">No Network Connection</string>
-    <string name="no_network_connection_message">Data cannot be accessed or loaded without internet connection</string>
+    <string name="no_network_connection_message">Data cannot be accessed/loaded without an internet connection.</string>
     <string name="ok">OK</string>
     <string name="cancel">CANCEL</string>
     <string name="get_location_message">Enter City, State or a Zip Code:</string>
+    <string name="no_data_for_location">No Data For Location</string>
+    <string name="office">Office</string>
+    <string name="official_name">Official Name</string>
+    <string name="party">Party</string>
+    <string name="address">Address:</string>
+    <string name="address_text">Address text</string>
+    <string name="youtube_link">Youtube Link</string>
+    <string name="twitter_link">Twitter Link</string>
+    <string name="facebook_link">Facebook Link</string>
+    <string name="party_logo">Party Logo</string>
+    <string name="official_photo">Official Photo</string>
+    <string name="website_url">Website URL</string>
+    <string name="website">Website:</string>
+    <string name="email_address">Email Address</string>
+    <string name="email">Email:</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="phone">Phone:</string>
 </resources>

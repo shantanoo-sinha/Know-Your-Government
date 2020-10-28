@@ -1,10 +1,8 @@
 package com.shantanoo.know_your_government;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -31,15 +29,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shantanoo.know_your_government.activity.AboutActivity;
+import com.shantanoo.know_your_government.activity.OfficialActivity;
 import com.shantanoo.know_your_government.adapter.RecyclerViewAdapter;
 import com.shantanoo.know_your_government.model.Official;
 import com.shantanoo.know_your_government.model.OfficialResult;
 import com.shantanoo.know_your_government.service.OfficialMasterDataService;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String TAG = "MainActivity";
 
-    private static int LOCATION_REQUEST_CODE_ID = 111;
+    private static final int LOCATION_REQUEST_CODE_ID = 111;
 
     private Criteria criteria;
     private TextView tvLocation;
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RecyclerViewAdapter adapter;
     private LocationManager locationManager;
     private LocationListener locationListener;
+    private LinearLayoutManager linearLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         tvLocation = findViewById(R.id.tvLocation);
         recyclerView = findViewById(R.id.rvOfficials);
+
+        officials = new ArrayList<>();
+        adapter = new RecyclerViewAdapter(this, officials);
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(adapter);
+
+        if (isConnectedToNetwork()) {
+            if (checkPermissions())
+                getZipCode();
+            else
+                requestLocationPermission();
+        } else {
+            onNetworkDisconnected();
+        }
     }
 
     @Override
@@ -135,26 +151,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @SuppressLint("MissingPermission")
-    private void setLocation() {
-
-        String bestProvider = locationManager.getBestProvider(criteria, true);
-        ((TextView) findViewById(R.id.bestText)).setText(bestProvider);
-
-        Location currentLocation = null;
-        if (bestProvider != null) {
-            currentLocation = locationManager.getLastKnownLocation(bestProvider);
-        }
-        if (currentLocation != null) {
-            ((TextView) findViewById(R.id.locText)).setText(
-                    String.format(Locale.getDefault(),
-                            "%.4f, %.4f", currentLocation.getLatitude(), currentLocation.getLongitude()));
-        } else {
-            ((TextView) findViewById(R.id.locText)).setText(R.string.no_locs);
-        }
-
-    }
-
     private void getLocation() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final EditText etLocationInput = new EditText(this);
@@ -183,7 +179,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-
+        int position = recyclerView.getChildLayoutPosition(v);
+        Official official = officials.get(position);
+        Intent intent = new Intent(this, OfficialActivity.class);
+        intent.putExtra("location", tvLocation.getText());
+        intent.putExtra(Official.class.getName(), official);
+        startActivity(intent);
     }
 
     // Check if internet connectivity is established
@@ -241,38 +242,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
             };
-            locationManager.requestLocationUpdates(
-                    LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
 
             if (locationManager != null) {
                 // Checking if we can get location from NETWORK
-                Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 if (location != null) {
-                    List<Address> addresses = null;
                     Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-                    addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                    Address ad = addresses.get(0);
-                    String zipCode = ad.getPostalCode();
+                    List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                    Address address = addresses.get(0);
+                    String zipCode = address.getPostalCode();
                     if (zipCode != null || zipCode.trim().length() > 0)
-                        new OfficialMasterList(MainActivity.this).execute(ad.getPostalCode());
-                    return;
+                        new Thread(new OfficialMasterDataService(MainActivity.this, address.getPostalCode())).start();
                 } else {
-                    dataNotAvailable();
+                    onNetworkDisconnected();
                 }
             } else {
                 Log.d(TAG, "getZipCode: locationManger is null");
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Log.e(TAG, "getZipCode: Exception", e);
         }
     }
 
     public void populateOfficialData(OfficialResult jsonResult) {
         officials.clear();
         if (jsonResult == null) {
-            tvLocation.setText("No Data for location");
+            tvLocation.setText(getString(R.string.no_data_for_location));
         } else {
-            tvLocation.setText(TextUtils.isEmpty(jsonResult.getLocation()) ? "No Data for location" : jsonResult.getLocation());
+            tvLocation.setText(TextUtils.isEmpty(jsonResult.getLocation()) ? getString(R.string.no_data_for_location) : jsonResult.getLocation());
             if (jsonResult.getOfficialList() != null) {
                 officials.addAll(jsonResult.getOfficialList());
             }

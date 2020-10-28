@@ -28,7 +28,7 @@ public class OfficialMasterDataService implements Runnable {
     public static final String KEY_TOKEN = "?key=";
     public static final String API_KEY = "AIzaSyCNrnzXAOycCyVGE6qxhaNAJhs9ZpJdDwg";
     public static final String COMPLETE_CIVIC_API_URL = GOOGLE_CIVIC_API_BASE_URL + KEY_TOKEN + API_KEY;
-    public static final String ADDRESS_TOKEN = "address=";
+    public static final String ADDRESS_TOKEN = "&address=";
     public static final String DATA_NOT_FOUND = "No Data Provided";
     private static final String TAG = "OfficialMasterDataServi";
     private final MainActivity mainActivity;
