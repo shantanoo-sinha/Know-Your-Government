@@ -51,4 +51,6 @@
     <string name="official_image_message">Official image not available</string>
     <string name="republican_website">https://www.gop.com</string>
     <string name="democrat_website">https://democrats.org</string>
+    <string name="official_designation">Official Designation</string>
+    <string name="current_location">Current Location</string>
 </resources>

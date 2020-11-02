@@ -1,5 +1,6 @@
 package com.shantanoo.know_your_government.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +20,12 @@ import java.util.List;
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
+    /*private Context context;*/
     private final List<Official> officials;
     private final MainActivity mainActivity;
 
-    public RecyclerViewAdapter(MainActivity mainActivity, List<Official> officials) {
+    public RecyclerViewAdapter(/*Context context,*/ MainActivity mainActivity, List<Official> officials) {
+        /*this.context = context;*/
         this.mainActivity = mainActivity;
         this.officials = officials;
     }
@@ -32,7 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_row, parent, false);
         view.setOnClickListener(mainActivity);
-        return new ViewHolder(view);
+        return new ViewHolder(view/*, context*/);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.shantanoo.know_your_government.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Group;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 
 import com.shantanoo.know_your_government.R;
 import com.shantanoo.know_your_government.model.Official;
@@ -155,18 +158,20 @@ public class OfficialActivity extends AppCompatActivity {
     private void populateImage(final String officialPhotoURL) {
 
         // If Photo URL is present
-        if (officialPhotoURL != null) {
-            // To handle image load failures
-            Picasso picasso = new Picasso.Builder(this).listener((picasso1, uri, exception) -> exception.printStackTrace()).build();
-            picasso.setLoggingEnabled(true);
-            // Load image from the URL, if error load the broken image
-            picasso.load(officialPhotoURL)
-                    .error(R.drawable.brokenimage)
-                    .placeholder(R.drawable.placeholder)
-                    .into(ivOfficialPhoto);
-        } else { // Image URL is not present for these officials
+        if (officialPhotoURL == null) { // Image URL is not present for these officials
+            Log.d(TAG, "populateImage: Official photo not available");
             ivOfficialPhoto.setImageResource(R.drawable.missing);
+            return;
         }
+        // To handle image load failures
+        Picasso picasso = new Picasso.Builder(this).listener((picasso1, uri, exception) -> exception.printStackTrace()).build();
+        picasso.setLoggingEnabled(true);
+        // Load image from the URL, if error load the broken image
+        picasso.load(officialPhotoURL)
+                .error(R.drawable.brokenimage)
+                .placeholder(R.drawable.placeholder)
+                .into(ivOfficialPhoto);
+
     }
 
     public void onClickPartyLogo(View view) {
@@ -174,9 +179,8 @@ public class OfficialActivity extends AppCompatActivity {
         String url = null;
 
         // If party is known Republican / Democrat*
-        if (party.equalsIgnoreCase(getString(R.string.unknown)) || party.equalsIgnoreCase(getString(R.string.data_not_found))) {
+        if (party.equalsIgnoreCase(getString(R.string.unknown)) || party.equalsIgnoreCase(getString(R.string.data_not_found)))
             return;
-        }
 
         if (party.toLowerCase().contains(getString(R.string.republican)))
             url = getString(R.string.republican_website);
@@ -198,6 +202,12 @@ public class OfficialActivity extends AppCompatActivity {
         intent.putExtra(getString(R.string.location), tvCurrentLocation.getText());
         intent.putExtra(Official.class.getName(), official);
         startActivity(intent);
+        /*Pair<View, String> p1 = Pair.create((View) tvOffice, getString(R.string.official_designation));
+        Pair<View, String> p2 = Pair.create((View) tvName, getString(R.string.official_name));
+        Pair<View, String> p3 = Pair.create((View) ivOfficialPhoto, getString(R.string.official_photo));
+        Pair<View, String> p4 = Pair.create((View) ivPartyLogo, getString(R.string.party_logo));
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, p1, p2, p3, p4);
+        startActivity(intent, options.toBundle());*/
     }
 
     public void clickToOpenBrowser(View v) {

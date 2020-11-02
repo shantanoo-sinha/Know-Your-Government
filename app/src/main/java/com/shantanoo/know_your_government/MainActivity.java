@@ -1,3 +1,4 @@
+
 package com.shantanoo.know_your_government;
 
 import android.Manifest;
@@ -22,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         officials = new ArrayList<>();
         adapter = new RecyclerViewAdapter(this, officials);
         linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
 
@@ -182,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int position = recyclerView.getChildLayoutPosition(v);
         Official official = officials.get(position);
         Intent intent = new Intent(this, OfficialActivity.class);
-        intent.putExtra("location", tvLocation.getText());
+        intent.putExtra(getString(R.string.location), tvLocation.getText());
         intent.putExtra(Official.class.getName(), official);
         startActivity(intent);
     }

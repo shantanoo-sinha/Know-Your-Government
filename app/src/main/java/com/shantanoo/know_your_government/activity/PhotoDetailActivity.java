@@ -2,6 +2,7 @@ package com.shantanoo.know_your_government.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -76,18 +77,37 @@ public class PhotoDetailActivity extends AppCompatActivity {
     private void populateImage(final String officialPhotoURL) {
 
         // If Photo URL is present
-        if (officialPhotoURL != null) {
-            // To handle image load failures
-            Picasso picasso = new Picasso.Builder(this).listener((picasso1, uri, exception) -> exception.printStackTrace()).build();
-            picasso.setLoggingEnabled(true);
-            // Load image from the URL, if error load the broken image
-            picasso.load(officialPhotoURL)
-                    .error(R.drawable.brokenimage)
-                    .placeholder(R.drawable.placeholder)
-                    .into(ivDetailOfficialPhoto);
-        } else { // Image URL is not present for these officials
+        if (officialPhotoURL == null) { // Image URL is not present for these officials
             Log.d(TAG, "populateImage: Official photo not available");
             ivDetailOfficialPhoto.setImageResource(R.drawable.missing);
+            return;
         }
+        // To handle image load failures
+        Picasso picasso = new Picasso.Builder(this).listener((picasso1, uri, exception) -> exception.printStackTrace()).build();
+        picasso.setLoggingEnabled(true);
+        // Load image from the URL, if error load the broken image
+        picasso.load(officialPhotoURL)
+                .error(R.drawable.brokenimage)
+                .placeholder(R.drawable.placeholder)
+                .into(ivDetailOfficialPhoto);
+
+    }
+
+    public void onClickPartyLogo(View view) {
+        String party = official.getOfficialParty();
+        String url = null;
+
+        // If party is known Republican / Democrat*
+        if (party.equalsIgnoreCase(getString(R.string.unknown)) || party.equalsIgnoreCase(getString(R.string.data_not_found)))
+            return;
+
+        if (party.toLowerCase().contains(getString(R.string.republican)))
+            url = getString(R.string.republican_website);
+        else if (party.toLowerCase().contains(getString(R.string.democrat)))
+            url = getString(R.string.democrat_website);
+
+        Intent partyWebSite = new Intent(Intent.ACTION_VIEW);
+        partyWebSite.setData(Uri.parse(url));
+        startActivity(partyWebSite);
     }
 }
