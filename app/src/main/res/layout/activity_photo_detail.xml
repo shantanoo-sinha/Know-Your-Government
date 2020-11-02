@@ -2,8 +2,106 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clDetailOfficialActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".activity.PhotoDetailActivity">
+
+    <TextView
+        android:id="@+id/tvDetailCurrentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#a87ab8"
+        android:gravity="center"
+        android:text="@string/no_data_for_location"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/no_data_for_location" />
+
+    <TextView
+        android:id="@+id/tvDetailOffice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/detailVerticalRightEndGuidelineOfficialActivity"
+        app:layout_constraintStart_toStartOf="@+id/detailVerticalLeftEndGuidelineOfficialActivity"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailCurrentLocation"
+        tools:text="@string/office" />
+
+    <TextView
+        android:id="@+id/tvDetailName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/detailVerticalRightEndGuidelineOfficialActivity"
+        app:layout_constraintStart_toStartOf="@+id/detailVerticalLeftEndGuidelineOfficialActivity"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailOffice"
+        tools:text="@string/official_name" />
+
+    <ImageView
+        android:id="@+id/ivDetailOfficialPhoto"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/official_photo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/detailVerticalRightEndGuidelineOfficialActivity"
+        app:layout_constraintLeft_toRightOf="@id/detailVerticalLeftEndGuidelineOfficialActivity"
+        app:layout_constraintRight_toLeftOf="@id/detailVerticalRightEndGuidelineOfficialActivity"
+        app:layout_constraintStart_toStartOf="@+id/detailVerticalLeftEndGuidelineOfficialActivity"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailName"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/placeholder" />
+
+    <ImageView
+        android:id="@+id/ivDetailPartyLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:contentDescription="@string/party_logo"
+        app:layout_constraintBottom_toBottomOf="@+id/ivDetailOfficialPhoto"
+        app:layout_constraintEnd_toEndOf="@id/ivDetailOfficialPhoto"
+        app:layout_constraintStart_toStartOf="@id/ivDetailOfficialPhoto"
+        app:srcCompat="@drawable/dem_logo" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/detailVerticalLeftEndGuidelineOfficialActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.04"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/detailVerticalRightEndGuidelineOfficialActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.96"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

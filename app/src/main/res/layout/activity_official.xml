@@ -5,28 +5,30 @@
     android:id="@+id/sbOfficialActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".activity.OfficialActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clOfficialActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".acy.OfficialActivity">
+        tools:context=".activity.OfficialActivity">
 
         <TextView
             android:id="@+id/tvCurrentLocation"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:gravity="center_horizontal"
+            android:background="#a87ab8"
+            android:gravity="center"
             android:text="@string/no_data_for_location"
-            tools:text="@string/no_data_for_location"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/no_data_for_location" />
 
         <TextView
             android:id="@+id/tvOffice"
@@ -34,29 +36,30 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:gravity="center_horizontal"
-            tools:text="@string/office"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCurrentLocation" />
+            app:layout_constraintEnd_toStartOf="@+id/verticalRightEndGuidelineOfficialActivity"
+            app:layout_constraintStart_toStartOf="@+id/verticalLeftEndGuidelineOfficialActivity"
+            app:layout_constraintTop_toBottomOf="@+id/tvCurrentLocation"
+            tools:text="@string/office" />
 
         <TextView
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            tools:text="@string/official_name"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvOffice" />
+            app:layout_constraintEnd_toStartOf="@+id/verticalRightEndGuidelineOfficialActivity"
+            app:layout_constraintStart_toStartOf="@+id/verticalLeftEndGuidelineOfficialActivity"
+            app:layout_constraintTop_toBottomOf="@+id/tvOffice"
+            tools:text="@string/official_name" />
 
         <TextView
             android:id="@+id/tvParty"
@@ -64,197 +67,272 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:gravity="center_horizontal"
-            tools:text="@string/party"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvName" />
+            app:layout_constraintEnd_toStartOf="@+id/verticalRightEndGuidelineOfficialActivity"
+            app:layout_constraintStart_toStartOf="@+id/verticalLeftEndGuidelineOfficialActivity"
+            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            tools:text="@string/party" />
 
         <ImageView
             android:id="@+id/ivOfficialPhoto"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/official_photo"
             android:onClick="onClickOfficialPhoto"
+            app:layout_constraintEnd_toStartOf="@+id/verticalRightEndGuidelineOfficialActivity"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/verticalLeftEndGuidelineOfficialActivity"
             app:layout_constraintTop_toBottomOf="@+id/tvParty"
-            app:srcCompat="@drawable/placeholder"
-            android:contentDescription="@string/official_photo" />
+            app:srcCompat="@drawable/placeholder" />
 
         <ImageView
-            android:id="@+id/ivPartyLogo"
+            android:id="@+id/ivDetailPartyLogo"
             android:layout_width="wrap_content"
-            android:layout_height="75dp"
-            android:layout_marginTop="175dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="245dp"
+            android:contentDescription="@string/party_logo"
             android:onClick="onClickPartyLogo"
-            app:layout_constraintBottom_toBottomOf="@+id/ivOfficialPhoto"
             app:layout_constraintEnd_toEndOf="@id/ivOfficialPhoto"
             app:layout_constraintStart_toStartOf="@id/ivOfficialPhoto"
-            app:layout_constraintTop_toBottomOf="@+id/tvParty"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/dem_logo"
-            android:contentDescription="@string/party_logo" />
+            app:layout_constraintTop_toTopOf="@+id/ivOfficialPhoto"
+            app:srcCompat="@drawable/dem_logo" />
 
         <TextView
             android:id="@+id/tvAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="37dp"
-            tools:text="@string/address"
+            android:layout_marginTop="10dp"
             android:text="@string/address"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivOfficialPhoto" />
+            app:layout_constraintEnd_toStartOf="@+id/verticalGuidelineOfficialActivity"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/verticalLeftEndGuidelineOfficialActivity"
+            app:layout_constraintTop_toBottomOf="@id/ivDetailPartyLogo"
+            tools:text="@string/address" />
 
         <TextView
             android:id="@+id/tvAddressText"
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:layout_marginStart="110dp"
-            android:layout_marginTop="36dp"
-            android:text="@string/address_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:autoLink="all"
+            android:onClick="clickMap"
             android:textColor="@color/white"
-            android:textSize="17sp"
+            android:textColorLink="@color/white"
+            android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivOfficialPhoto" />
+            app:layout_constraintEnd_toStartOf="@+id/verticalRightEndGuidelineOfficialActivity"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/verticalGuidelineOfficialActivity"
+            app:layout_constraintTop_toTopOf="@+id/tvAddress"
+            tools:text="@string/address_text" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tvAddress,tvAddressText" />
 
         <TextView
             android:id="@+id/tvPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="62dp"
+            android:layout_marginTop="10dp"
             android:text="@string/phone"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
+            app:layout_constraintEnd_toStartOf="@+id/verticalGuidelineOfficialActivity"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/verticalLeftEndGuidelineOfficialActivity"
+            app:layout_constraintTop_toBottomOf="@id/tvAddressText"
+            tools:text="@string/phone" />
 
         <TextView
             android:id="@+id/tvPhoneText"
-            android:layout_width="fill_parent"
-            android:layout_height="38dp"
-            android:layout_marginStart="110dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/phone_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:autoLink="all"
+            android:onClick="clickCall"
             android:textColor="@color/white"
-            android:textSize="17sp"
+            android:textColorLink="@color/white"
+            android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAddressText" />
+            app:layout_constraintEnd_toStartOf="@+id/verticalRightEndGuidelineOfficialActivity"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/verticalGuidelineOfficialActivity"
+            app:layout_constraintTop_toTopOf="@+id/tvPhone"
+            tools:text="@string/phone_number" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tvPhone,tvPhoneText" />
 
         <TextView
             android:id="@+id/tvEmail"
-            android:layout_width="69dp"
-            android:layout_height="21dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="41dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="@string/email"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+            app:layout_constraintEnd_toStartOf="@+id/verticalGuidelineOfficialActivity"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/verticalLeftEndGuidelineOfficialActivity"
+            app:layout_constraintTop_toBottomOf="@id/tvPhoneText"
+            tools:text="@string/email" />
 
         <TextView
             android:id="@+id/tvEmailText"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="110dp"
-            android:layout_marginTop="28dp"
-            android:text="@string/email_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:autoLink="all"
+            android:onClick="clickEmail"
             android:textColor="@color/white"
-            android:textSize="17sp"
+            android:textColorLink="@color/white"
+            android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPhoneText" />
+            app:layout_constraintEnd_toStartOf="@+id/verticalRightEndGuidelineOfficialActivity"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/verticalGuidelineOfficialActivity"
+            app:layout_constraintTop_toTopOf="@+id/tvEmail"
+            tools:text="@string/email_address" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tvEmail,tvEmailText" />
 
         <TextView
             android:id="@+id/tvWebsite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="53dp"
+            android:layout_marginTop="10dp"
             android:text="@string/website"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+            app:layout_constraintEnd_toStartOf="@+id/verticalGuidelineOfficialActivity"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/verticalLeftEndGuidelineOfficialActivity"
+            app:layout_constraintTop_toBottomOf="@id/tvEmailText"
+            tools:text="@string/website" />
 
         <TextView
             android:id="@+id/tvWebsiteURL"
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="110dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/website_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:autoLink="all"
+            android:onClick="clickToOpenBrowser"
             android:textColor="@color/white"
-            android:textSize="17sp"
+            android:textColorLink="@color/white"
+            android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintE_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/verticalRightEndGuidelineOfficialActivity"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvEmailText" />
+            app:layout_constraintStart_toStartOf="@id/verticalGuidelineOfficialActivity"
+            app:layout_constraintTop_toTopOf="@+id/tvWebsite"
+            tools:text="@string/website_url" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupWebsite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tvWebsite,tvWebsiteURL" />
 
         <ImageView
             android:id="@+id/ivFacebook"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:contentDescription="@string/facebook_link"
             android:onClick="onClickFacebook"
             android:src="@drawable/facebook"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/ivOfficialPhoto"
-            app:layout_constraintTop_toBottomOf="@+id/tvWebsite"
-            android:contentDescription="@string/facebook_link" />
+            app:layout_constraintStart_toStartOf="@+id/ivOfficialPhoto"
+            app:layout_constraintTop_toBottomOf="@+id/tvWebsiteURL" />
 
         <ImageView
             android:id="@+id/ivTwitter"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:contentDescription="@string/twitter_link"
             android:onClick="onClickTwitter"
             android:src="@drawable/twitter"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivFacebook"
-            app:layout_constraintEnd_toStartOf="@id/ivYoutube"
-            app:layout_constraintTop_toBottomOf="@+id/tvWebsite"
-            android:contentDescription="@string/twitter_link" />
+            app:layout_constraintEnd_toStartOf="@+id/ivYoutube"
+            app:layout_constraintStart_toEndOf="@+id/ivFacebook"
+            app:layout_constraintTop_toBottomOf="@+id/tvWebsiteURL" />
 
         <ImageView
             android:id="@+id/ivYoutube"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:contentDescription="@string/youtube_link"
             android:onClick="onClickYouTube"
             android:src="@drawable/youtube"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/ivOfficialPhoto"
-            app:layout_constraintTop_toBottomOf="@+id/tvWebsite"
-            android:contentDescription="@string/youtube_link" />
+            app:layout_constraintTop_toBottomOf="@+id/tvWebsiteURL" />
 
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupSocial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="ivFacebook,ivTwitter,ivYoutube" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/verticalGuidelineOfficialActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_percent="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/verticalLeftEndGuidelineOfficialActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_percent="0.04"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/verticalRightEndGuidelineOfficialActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_percent="0.96"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

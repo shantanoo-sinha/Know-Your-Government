@@ -1,6 +1,7 @@
 package com.shantanoo.know_your_government.service;
 
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.shantanoo.know_your_government.MainActivity;
@@ -189,11 +190,11 @@ public class OfficialMasterDataService implements Runnable {
         JSONArray addressJson = officialData.getJSONArray("address");
         JSONObject addressObject = (JSONObject) addressJson.get(0);
 
-        if (addressObject.has("line1"))
+        if (addressObject.has("line1") && !TextUtils.isEmpty(addressObject.getString("line1")))
             sb.append(addressObject.getString("line1")).append('\n');
-        if (addressObject.has("line2"))
+        if (addressObject.has("line2") && !TextUtils.isEmpty(addressObject.getString("line2")))
             sb.append(addressObject.getString("line2")).append('\n');
-        if (addressObject.has("line3"))
+        if (addressObject.has("line3") && !TextUtils.isEmpty(addressObject.getString("line3")))
             sb.append(addressObject.getString("line3")).append('\n');
 
         sb.append(addressObject.getString("city")).append(", ");

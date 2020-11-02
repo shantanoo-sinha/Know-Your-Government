@@ -29,4 +29,26 @@
     <string name="email">Email:</string>
     <string name="phone_number">Phone Number</string>
     <string name="phone">Phone:</string>
+    <string name="democrat">democrat</string>
+    <string name="republican">republican</string>
+    <string name="location">location</string>
+    <string name="data_not_found">No Data Provided</string>
+    <string name="unknown">Unknown</string>
+    <string name="no_app_found">No App Found</string>
+    <string name="youtube_package">com.google.android.youtube</string>
+    <string name="youtube_url">https://www.youtube.com/</string>
+    <string name="facebook_package">com.facebook.katana</string>
+    <string name="facebook_url">https://www.facebook.com/</string>
+    <string name="facebook_app_url">fb://facewebmodal/f?href=</string>
+    <string name="facebook_old_app_url">fb://page/</string>
+    <string name="twitter_url">https://twitter.com/</string>
+    <string name="twitter_package">com.twitter.android</string>
+    <string name="twitter_screen_url">twitter://user?screen_name=</string>
+    <string name="google_map_package">com.google.android.apps.maps</string>
+    <string name="google_map_geo_url">geo:0,0?q=</string>
+    <string name="mailto">mailto:</string>
+    <string name="tel">tel:</string>
+    <string name="official_image_message">Official image not available</string>
+    <string name="republican_website">https://www.gop.com</string>
+    <string name="democrat_website">https://democrats.org</string>
 </resources>
