@@ -16,6 +16,6 @@ Know Your Government Android Application
 
 
 ### App Walkthrough GIF
-<img src='https://i.imgur.com/JAyqiqJ.mp4' title='Video Walkthrough' width='' alt='Video Walkthrough'><br>
+<img src='https://i.imgur.com/JAyqiqJ.gif' title='Video Walkthrough' width='' alt='Video Walkthrough'/><br>
 
 IMGUR: https://i.imgur.com/JAyqiqJ.gif
