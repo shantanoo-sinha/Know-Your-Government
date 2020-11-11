@@ -275,10 +275,10 @@
 
             <ImageView
                 android:id="@+id/ivFacebook"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
                 android:layout_weight="0.33"
                 android:contentDescription="@string/facebook_link"
                 android:onClick="onClickFacebook"
