@@ -1,11 +1,11 @@
 package com.shantanoo.know_your_government.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,8 +18,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Group;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.util.Pair;
 
 import com.shantanoo.know_your_government.R;
 import com.shantanoo.know_your_government.model.Official;
@@ -111,6 +109,7 @@ public class OfficialActivity extends AppCompatActivity {
                 groupAddress.setVisibility(View.GONE);
             } else {
                 tvAddressText.setText(official.getOfficialAddress());
+                tvAddressText.setPaintFlags(tvAddressText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             }
 
             // Update phone number if provided else don't display it
@@ -202,12 +201,6 @@ public class OfficialActivity extends AppCompatActivity {
         intent.putExtra(getString(R.string.location), tvCurrentLocation.getText());
         intent.putExtra(Official.class.getName(), official);
         startActivity(intent);
-        /*Pair<View, String> p1 = Pair.create((View) tvOffice, getString(R.string.official_designation));
-        Pair<View, String> p2 = Pair.create((View) tvName, getString(R.string.official_name));
-        Pair<View, String> p3 = Pair.create((View) ivOfficialPhoto, getString(R.string.official_photo));
-        Pair<View, String> p4 = Pair.create((View) ivPartyLogo, getString(R.string.party_logo));
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, p1, p2, p3, p4);
-        startActivity(intent, options.toBundle());*/
     }
 
     public void clickToOpenBrowser(View v) {

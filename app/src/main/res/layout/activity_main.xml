@@ -9,9 +9,9 @@
     <TextView
         android:id="@+id/tvLocation"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:background="@color/colorPrimaryDark"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:text="@string/no_data_for_location"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -26,7 +26,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvOfficials"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
         android:background="#FAFAFA"
         android:scrollbars="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"

@@ -103,7 +103,7 @@ public class OfficialMasterDataService implements Runnable {
                     JSONObject officialData = (JSONObject) officialJson.get(indices.getInt(index));
 
                     // official name
-                    official.setOfficialName(officialData.getString("name") == null ||
+                    official.setOfficialName(TextUtils.isEmpty(officialData.getString("name")) ||
                             officialData.getString("name").trim().length() == 0 ? DATA_NOT_FOUND : officialData.getString("name"));
 
                     // official Address
@@ -174,9 +174,6 @@ public class OfficialMasterDataService implements Runnable {
                     break;
                 case "Twitter":
                     official.setOfficialTwitter(mediaInfo);
-                    break;
-                case "GooglePlus":
-                    official.setOfficialGooglePlus(mediaInfo);
                     break;
                 default:
                     Log.e(TAG, "parseJSON: Unknown Social Media Channel");

@@ -1,20 +1,12 @@
 package com.shantanoo.know_your_government.viewholder;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.util.Pair;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.shantanoo.know_your_government.MainActivity;
 import com.shantanoo.know_your_government.R;
-import com.shantanoo.know_your_government.activity.OfficialActivity;
 import com.shantanoo.know_your_government.model.Official;
 
 /**
